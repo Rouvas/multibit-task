@@ -1,0 +1,5 @@
+<div class="grid grid-cols-4 gap-4 items-center">
+  @for (task of (tasks$ | async); track task.id) {
+    <app-task-card [task]="task" type="card" />
+  }
+</div>

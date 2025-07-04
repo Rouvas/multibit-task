@@ -1,0 +1,27 @@
+@switch (state$ | async) {
+  @case ('loading') {
+    <div class="font-bold">
+      Загрузка...
+    </div>
+  }
+  @case ('view') {
+    @if (task$ | async; as task) {
+      <div class="rounded flex flex-col h-full relative">
+        <div class="absolute right-0 top-0 rounded px-0.5 py-[1px] border border-solid text-base" [ngClass]="task.status ? 'text-green-500' : 'text-red-500'"> {{ task.status ? 'Выполнено' : 'Не выполнено' }} </div>
+        <h2 class="font-bold text-sm">Задача #{{task.id}}</h2>
+        <div class="text-sm">{{ task.title }}</div>
+        <div class="text-xs mb-2 overflow-hidden truncate">{{task.description}}</div>
+        <div class="grid grid-cols-3 gap-2 mt-auto">
+          <a class="bg-emerald-500 text-sm rounded px-4 py-2 text-center text-white hover:bg-emerald-600" routerLink="edit">Изменить</a>
+          <button class="bg-red-400 cursor-pointer text-sm rounded px-4 py-2 text-center text-white transition-colors hover:bg-red-600" (click)="removeTask(task.id)">Удалить</button>
+          <a routerLink="../" class="bg-blue-400 cursor-pointer text-sm rounded px-4 py-2 text-center text-white transition-colors hover:bg-blue-600">Назад</a>
+        </div>
+      </div>
+    }
+  }
+  @case ('error') {
+    <div class="font-bold">
+      Произошла ошибка при загрузке данных (указан неверный адрес, либо отсутствуют данные)
+    </div>
+  }
+}

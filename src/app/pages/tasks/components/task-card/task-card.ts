@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
 import {Task} from '../../../../shared/interfaces/task';
 import {NgClass} from '@angular/common';
 import {RouterLink} from '@angular/router';
@@ -13,7 +13,8 @@ import {idToString} from '../../../../shared/ulitities/idToString';
   ],
   templateUrl: './task-card.html',
   standalone: true,
-  styleUrl: './task-card.scss'
+  styleUrl: './task-card.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TaskCard {
 

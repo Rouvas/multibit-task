@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {ActivatedRoute, Router, RouterLink} from '@angular/router';
 import {AsyncPipe} from '@angular/common';
@@ -14,7 +14,8 @@ import {BehaviorSubject} from 'rxjs';
   ],
   templateUrl: './task-form.html',
   standalone: true,
-  styleUrl: './task-form.scss'
+  styleUrl: './task-form.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TaskForm {
 
